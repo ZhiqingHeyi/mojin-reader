@@ -10,6 +10,10 @@
 </p>
 
 <p align="center">
+  <a href="https://mojin-reader.vercel.app" target="_blank">🌐 访问官方网站 & 在线体验</a>
+</p>
+
+<p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/Electron-25.x-47848F.svg?logo=electron" alt="Electron">
   <img src="https://img.shields.io/badge/React-18.x-61DAFB.svg?logo=react" alt="React">
