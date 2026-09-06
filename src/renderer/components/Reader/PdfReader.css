@@ -1,0 +1,447 @@
+/* PDF阅读器样式 */
+.pdf-reader {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #F5EEDD;
+  position: relative;
+}
+
+.pdf-reader-loading {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5EEDD;
+}
+
+.pdf-reader-loading p {
+  margin-top: 16px;
+  color: #7A6F5E;
+  font-size: 14px;
+}
+
+/* 工具栏 */
+.pdf-reader-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: rgba(251, 246, 234, 0.92);
+  border-bottom: 1px solid #E4D9C3;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+
+.reader-toolbar-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3A3226;
+  letter-spacing: 1px;
+}
+
+/* 底部翻页工具条 */
+.pdf-reader-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background-color: rgba(251, 246, 234, 0.96);
+  border-top: 1px solid #E4D9C3;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+
+.pdf-reader-bottom-bar .bottom-left,
+.pdf-reader-bottom-bar .bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdf-reader-bottom-bar .page-info {
+  margin: 0 8px;
+  font-size: 14px;
+  color: #3A3226;
+  font-weight: 500;
+}
+
+.pdf-reader-bottom-bar .page-jump {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+  font-size: 14px;
+  color: #7A6F5E;
+}
+
+.page-info span {
+  white-space: nowrap;
+}
+
+/* 设置面板 */
+.pdf-reader-settings {
+  background-color: rgba(251, 246, 234, 0.96);
+  border-bottom: 1px solid #E4D9C3;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 9;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.settings-row:last-child {
+  margin-bottom: 0;
+}
+
+.settings-row label {
+  min-width: 80px;
+  font-size: 14px;
+  color: #3A3226;
+  font-weight: 500;
+}
+
+.settings-row span {
+  font-size: 12px;
+  color: #7A6F5E;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* PDF内容区域 */
+.pdf-reader-content {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #E4D9C3;
+  transition: opacity 0.3s ease;
+}
+
+.pdf-reader-content canvas {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background-color: white;
+}
+
+/* 进度条 */
+.pdf-reader-progress {
+  height: 3px;
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #A07F45 0%, #E9CE8C 100%);
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-20px); }
+  100% { transform: translateX(20px); }
+}
+
+/* 目录样式 */
+.pdf-outline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pdf-outline-item {
+  margin-bottom: 4px;
+}
+
+.pdf-outline-title {
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdf-outline-title:hover {
+  background-color: #f0f0f0;
+}
+
+.no-outline {
+  color: #999;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .pdf-reader-toolbar {
+    padding: 6px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .toolbar-left,
+  .toolbar-right {
+    gap: 6px;
+  }
+  
+  .page-info {
+    margin-left: 8px;
+  }
+  
+  .pdf-reader-settings {
+    padding: 12px;
+  }
+  
+  .settings-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .settings-row label {
+    min-width: 60px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-reader-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .toolbar-left,
+  .toolbar-right {
+    justify-content: center;
+  }
+  
+  .settings-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .settings-row label {
+    margin-bottom: 4px;
+  }
+}
+
+/* 暗色主题 */
+.pdf-reader.dark-theme {
+  background-color: #1B1610;
+}
+
+.pdf-reader.dark-theme .pdf-reader-toolbar {
+  background-color: rgba(27, 22, 16, 0.9);
+  border-bottom-color: #3B3123;
+}
+
+.pdf-reader.dark-theme .pdf-reader-settings {
+  background-color: rgba(36, 29, 20, 0.96);
+  border-bottom-color: #3B3123;
+}
+
+.pdf-reader.dark-theme .settings-row label {
+  color: #E8DCC6;
+}
+
+.pdf-reader.dark-theme .settings-row span {
+  color: #9A8C77;
+}
+
+.pdf-reader.dark-theme .page-info {
+  color: #9A8C77;
+}
+
+.pdf-reader.dark-theme .pdf-reader-content {
+  background-color: #2D251A;
+}
+
+.pdf-reader.dark-theme .pdf-reader-progress {
+  background-color: #3B3123;
+}
+
+.pdf-reader.dark-theme .pdf-outline-title:hover {
+  background-color: #2a2a2a;
+}
+
+/* 滚动条样式 */
+.pdf-reader-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.pdf-reader-content::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.pdf-reader-content::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.pdf-reader-content::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+.pdf-reader.dark-theme .pdf-reader-content::-webkit-scrollbar-track {
+  background-color: #2a2a2a;
+}
+
+.pdf-reader.dark-theme .pdf-reader-content::-webkit-scrollbar-thumb {
+  background-color: #505050;
+}
+
+.pdf-reader.dark-theme .pdf-reader-content::-webkit-scrollbar-thumb:hover {
+  background-color: #707070;
+}
+
+/* 加载状态动画 */
+.pdf-reader-loading .ant-spin {
+  color: #C9A96E;
+}
+
+.pdf-reader.dark-theme .pdf-reader-loading {
+  background-color: #1B1610;
+  color: #E8DCC6;
+}
+
+/* 按钮样式优化 */
+.pdf-reader-toolbar .ant-btn {
+  border-radius: 6px;
+  font-size: 13px;
+  height: 32px;
+  padding: 0 12px;
+}
+
+.pdf-reader-toolbar .ant-btn-icon-only {
+  width: 32px;
+  padding: 0;
+}
+
+/* 输入框样式优化 */
+.pdf-reader-toolbar .ant-input-number {
+  border-radius: 6px;
+}
+
+/* 滑块样式优化 */
+.pdf-reader-settings .ant-slider {
+  margin: 0;
+}
+
+.pdf-reader-settings .ant-slider-rail {
+  background-color: #f0f0f0;
+}
+
+.pdf-reader-settings .ant-slider-track {
+  background-color: #C9A96E;
+}
+
+.pdf-reader-settings .ant-slider-handle {
+  border-color: #C9A96E;
+}
+
+.pdf-reader.dark-theme .pdf-reader-settings .ant-slider-rail {
+  background-color: #4A3F2E;
+}
+
+/* 错误状态 */
+.pdf-reader-error {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  color: #666;
+}
+
+.pdf-reader-error .error-icon {
+  font-size: 48px;
+  color: #ff4d4f;
+  margin-bottom: 16px;
+}
+
+.pdf-reader-error .error-message {
+  font-size: 16px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.pdf-reader-error .error-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* 抽屉样式 */
+.ant-drawer-body {
+  padding: 12px;
+}
+
+.ant-drawer-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* 打印样式 */
+@media print {
+  .pdf-reader-toolbar,
+  .pdf-reader-settings,
+  .pdf-reader-progress,
+  .ant-drawer {
+    display: none !important;
+  }
+  
+  .pdf-reader-content {
+    padding: 0;
+    overflow: visible;
+    background-color: white;
+  }
+  
+  .pdf-reader-content canvas {
+    box-shadow: none;
+    page-break-after: always;
+  }
+}

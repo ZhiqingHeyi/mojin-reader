@@ -1,0 +1,185 @@
+{
+  "name": "mojin-reader",
+  "version": "1.0.0",
+  "description": "摸金阅读 - 一款隐蔽的PC端阅读器",
+  "main": "dist/main/index.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:main\" \"npm run dev:renderer\" \"npm run start:dev\"",
+    "start:dev": "wait-on http://localhost:3000 && electron .",
+    "dev:main": "cross-env NODE_ENV=development webpack --config build/webpack.main.config.js --mode development --watch",
+    "dev:renderer": "cross-env NODE_ENV=development webpack serve --config build/webpack.renderer.config.js --mode development",
+    "build": "npm run build:main && npm run build:renderer",
+    "build:main": "cross-env NODE_ENV=production webpack --config build/webpack.main.config.js --mode production",
+    "build:renderer": "cross-env NODE_ENV=production webpack --config build/webpack.renderer.config.js --mode production",
+    "dist": "npm run build && electron-builder",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:all": "npm run build && electron-builder -mwl",
+    "start": "electron .",
+    "pack": "electron-builder",
+    "test": "jest",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "typescript",
+    "reader",
+    "pdf",
+    "epub",
+    "txt"
+  ],
+  "author": "ZhiqingHeyi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZhiqingHeyi/mojin-reader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZhiqingHeyi/mojin-reader/issues"
+  },
+  "homepage": "https://github.com/ZhiqingHeyi/mojin-reader#readme",
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@reduxjs/toolkit": "^1.9.5",
+    "antd": "^5.8.0",
+    "electron-store": "^8.1.0",
+    "epubjs": "^0.3.93",
+    "iconv-lite": "^0.6.3",
+    "jschardet": "^3.1.4",
+    "pdfjs-dist": "^3.9.179",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.14.2",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/minimatch": "^5.1.2",
+    "@types/node": "^20.4.5",
+    "@types/pdfjs-dist": "^2.10.377",
+    "@types/react": "^18.2.17",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "buffer": "^6.0.3",
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.8.1",
+    "electron": "^25.3.1",
+    "electron-builder": "^24.4.0",
+    "eslint": "^8.46.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "jest": "^29.6.2",
+    "process": "^0.11.10",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "wait-on": "^8.0.4",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "worker-loader": "^3.0.8"
+  },
+  "build": {
+    "appId": "com.mojinreader.app",
+    "productName": "摸金阅读",
+    "copyright": "Copyright © 2026 摸金阅读团队",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "摸金阅读"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "build/icons/icon.icns",
+      "category": "public.app-category.productivity"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "deb",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "rpm",
+          "arch": ["x64"]
+        },
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        },
+        {
+          "target": "tar.gz",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "build/icons/icon.png",
+      "category": "Office",
+      "desktop": {
+        "Name": "摸金阅读",
+        "Comment": "沉浸式极简隐蔽摸鱼阅读神器",
+        "Keywords": "reader;mojin;epub;pdf;txt;moyu;"
+      }
+    }
+  },
+  "allowScripts": {
+    "electron@25.9.8": true
+  }
+}

@@ -1,0 +1,182 @@
+/* 首页样式 */
+.home-page {
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 头部样式 */
+.home-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 18px 0 14px;
+  position: relative;
+}
+
+.home-header h1 {
+  font-size: 30px;
+  margin-bottom: 6px;
+  font-family: 'Kaiti SC', 'KaiTi', 'STKaiti', serif;
+  font-weight: 700;
+  letter-spacing: 6px;
+  background: linear-gradient(180deg, #C9A96E 0%, #8C6D33 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-header .subtitle {
+  font-size: 13px;
+  color: #9A8C77;
+  letter-spacing: 2px;
+}
+
+.dark-theme .home-header .subtitle {
+  color: #9A8C77;
+}
+
+/* 操作栏样式 */
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.action-bar .ant-btn {
+  height: 36px;
+  border-radius: 10px;
+  padding: 0 18px;
+}
+
+/* 拖拽提示 */
+.drop-hint {
+  font-size: 12px;
+  color: #A89A82;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dark-theme .drop-hint {
+  color: #8A7C66;
+}
+
+/* 文件标签页样式 */
+.file-tabs {
+  margin-bottom: 8px;
+}
+
+/* 文件列表容器 */
+.file-list-container {
+  flex: 1;
+  overflow-y: auto;
+  background-color: rgba(251, 246, 234, 0.7);
+  border: 1px solid #E8DEC8;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.dark-theme .file-list-container {
+  background-color: rgba(36, 29, 20, 0.6);
+  border-color: #3B3123;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 文件列表样式 */
+.file-list {
+  border-radius: 12px;
+}
+
+/* 文件项样式 */
+.file-item {
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid transparent !important;
+}
+
+.file-item:hover {
+  background-color: rgba(201, 169, 110, 0.10);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.file-item-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.file-icon {
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background-color: rgba(201, 169, 110, 0.10);
+  flex-shrink: 0;
+}
+
+.file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+  color: #3A3226;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-meta {
+  font-size: 12px;
+  color: #A89A82;
+  display: flex;
+  gap: 8px;
+}
+
+.dark-theme .file-name {
+  color: #E8DCC6;
+}
+
+.dark-theme .file-meta {
+  color: #8A7C66;
+}
+
+/* 空状态样式 */
+.ant-empty {
+  margin: 40px 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .home-page {
+    padding: 16px;
+  }
+  
+  .action-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .file-item {
+    padding: 8px;
+  }
+  
+  .file-icon {
+    margin-right: 12px;
+  }
+}

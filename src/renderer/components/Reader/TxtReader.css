@@ -1,0 +1,626 @@
+/* TXT阅读器样式 */
+.txt-reader {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #F5EEDD;
+  position: relative;
+}
+
+.txt-reader-loading {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5EEDD;
+}
+
+.txt-reader-loading p {
+  margin-top: 16px;
+  color: #7A6F5E;
+  font-size: 14px;
+}
+
+/* 工具栏 */
+.txt-reader-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: rgba(251, 246, 234, 0.92);
+  border-bottom: 1px solid #E4D9C3;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  /* z-index 低于侧边栏 (100)，避免阅读器顶部菜单覆盖在侧边栏之上 */
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+
+.reader-toolbar-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3A3226;
+  letter-spacing: 1px;
+}
+
+/* 底部翻页工具条：翻页/页码跳转放这里，更符合阅读器习惯 */
+.txt-reader-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background-color: rgba(251, 246, 234, 0.96);
+  border-top: 1px solid #E4D9C3;
+  /* z-index 低于侧边栏 (100)，避免覆盖侧边栏 */
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+
+.txt-reader-bottom-bar .bottom-left,
+.txt-reader-bottom-bar .bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.txt-reader-bottom-bar .page-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.txt-reader-bottom-bar .page-info-text {
+  font-size: 13px;
+  color: #7A6F5E;
+  font-weight: 500;
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+  font-size: 14px;
+  color: #7A6F5E;
+}
+
+.page-info span {
+  white-space: nowrap;
+}
+
+/* 设置面板 */
+.txt-reader-settings {
+  background-color: rgba(251, 246, 234, 0.96);
+  border-bottom: 1px solid #E4D9C3;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 9;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.settings-row:last-child {
+  margin-bottom: 0;
+}
+
+.settings-row label {
+  min-width: 80px;
+  font-size: 14px;
+  color: #3A3226;
+  font-weight: 500;
+}
+
+.settings-row span {
+  font-size: 12px;
+  color: #7A6F5E;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* 阅读内容区域 */
+.txt-reader-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #FBF6EA;
+  position: relative;
+}
+
+.txt-content {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  min-height: 100%;
+  user-select: text;
+  cursor: text;
+}
+
+/* 当前章节标题栏 */
+.txt-chapter-bar {
+  padding: 6px 16px;
+  background-color: rgba(240, 231, 210, 0.6);
+  border-bottom: 1px solid #E4D9C3;
+  font-size: 13px;
+  color: #A07F45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.txt-chapter-bar:hover {
+  background-color: rgba(240, 231, 210, 0.9);
+}
+
+/* 搜索栏 */
+.txt-search-bar {
+  padding: 8px 16px;
+  background-color: rgba(240, 231, 210, 0.7);
+  border-bottom: 1px solid #E4D9C3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.txt-search-count {
+  font-size: 12px;
+  color: #7A6F5E;
+  margin: 0 4px;
+  min-width: 50px;
+}
+
+/* 章节目录 */
+.txt-chapter-list {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.txt-chapter-item {
+  padding: 8px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.txt-chapter-item:hover {
+  background-color: rgba(160, 127, 69, 0.1);
+}
+
+.txt-chapter-item.active {
+  background-color: rgba(160, 127, 69, 0.15);
+  color: #A07F45;
+  font-weight: 600;
+}
+
+/* 进度条 */
+.txt-reader-progress {
+  height: 3px;
+  background-color: #E4D9C3;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #A07F45 0%, #E9CE8C 100%);
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-20px); }
+  100% { transform: translateX(20px); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .txt-reader-toolbar {
+    padding: 6px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .toolbar-left,
+  .toolbar-right {
+    gap: 6px;
+  }
+  
+  .page-info {
+    margin-left: 8px;
+  }
+  
+  .txt-reader-settings {
+    padding: 12px;
+  }
+  
+  .settings-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .settings-row label {
+    min-width: 60px;
+    font-size: 13px;
+  }
+  
+  .txt-reader-content {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .txt-reader-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .toolbar-left,
+  .toolbar-right {
+    justify-content: center;
+  }
+  
+  .settings-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .settings-row label {
+    margin-bottom: 4px;
+  }
+}
+
+/* 暗色主题 */
+.txt-reader.dark-theme {
+  background-color: #1B1610;
+}
+
+.txt-reader.dark-theme .txt-reader-toolbar {
+  background-color: rgba(27, 22, 16, 0.9);
+  border-bottom-color: #3B3123;
+}
+
+.txt-reader.dark-theme .txt-reader-settings {
+  background-color: rgba(36, 29, 20, 0.96);
+  border-bottom-color: #3B3123;
+}
+
+.txt-reader.dark-theme .settings-row label {
+  color: #E8DCC6;
+}
+
+.txt-reader.dark-theme .settings-row span {
+  color: #9A8C77;
+}
+
+.txt-reader.dark-theme .page-info {
+  color: #9A8C77;
+}
+
+.txt-reader.dark-theme .txt-reader-content {
+  background-color: #241D14;
+}
+
+.txt-reader.dark-theme .txt-chapter-bar {
+  background-color: rgba(45, 37, 26, 0.8);
+  border-bottom-color: #3B3123;
+  color: #C9A96E;
+}
+
+.txt-reader.dark-theme .txt-chapter-bar:hover {
+  background-color: rgba(45, 37, 26, 1);
+}
+
+.txt-reader.dark-theme .txt-search-bar {
+  background-color: rgba(36, 29, 20, 0.9);
+  border-bottom-color: #3B3123;
+}
+
+.txt-reader.dark-theme .txt-search-count {
+  color: #9A8C77;
+}
+
+.txt-reader.dark-theme .txt-chapter-item:hover {
+  background-color: rgba(201, 169, 110, 0.1);
+}
+
+.txt-reader.dark-theme .txt-chapter-item.active {
+  background-color: rgba(201, 169, 110, 0.16);
+  color: #E9CE8C;
+}
+
+.txt-reader.dark-theme .txt-reader-progress {
+  background-color: #3B3123;
+}
+
+/* 护眼主题 */
+.txt-reader.sepia-theme {
+  background-color: #F7F1E1;
+}
+
+.txt-reader.sepia-theme .txt-reader-toolbar {
+  background-color: #F0E7D2;
+  border-bottom-color: #E2D4B6;
+}
+
+.txt-reader.sepia-theme .txt-reader-settings {
+  background-color: #F0E7D2;
+  border-bottom-color: #E2D4B6;
+}
+
+.txt-reader.sepia-theme .settings-row label {
+  color: #5C4B37;
+}
+
+.txt-reader.sepia-theme .settings-row span {
+  color: #8B7355;
+}
+
+.txt-reader.sepia-theme .page-info {
+  color: #8B7355;
+}
+
+.txt-reader.sepia-theme .txt-reader-content {
+  background-color: #F7F1E1;
+}
+
+.txt-reader.sepia-theme .txt-chapter-bar {
+  background-color: rgba(226, 212, 182, 0.6);
+  border-bottom-color: #E2D4B6;
+  color: #8B7355;
+}
+
+.txt-reader.sepia-theme .txt-search-bar {
+  background-color: rgba(240, 231, 210, 0.7);
+  border-bottom-color: #E2D4B6;
+}
+
+.txt-reader.sepia-theme .txt-reader-progress {
+  background-color: #E2D4B6;
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  .txt-reader-toolbar {
+    border-bottom-width: 2px;
+  }
+  
+  .txt-reader-settings {
+    border-bottom-width: 2px;
+  }
+  
+  .progress-bar {
+    background: #000000;
+  }
+  
+  .txt-reader.dark-theme .progress-bar {
+    background: #ffffff;
+  }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar {
+    transition: none;
+  }
+  
+  .progress-bar::after {
+    animation: none;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .txt-reader-toolbar,
+  .txt-reader-settings,
+  .txt-reader-progress {
+    display: none;
+  }
+  
+  .txt-reader-content {
+    padding: 0;
+    overflow: visible;
+  }
+  
+  .txt-content {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000000;
+  }
+}
+
+/* 选中文本样式 */
+.txt-content::selection {
+  background-color: #C9A96E;
+  color: #241A0C;
+}
+
+.txt-reader.dark-theme .txt-content::selection {
+  background-color: #E9CE8C;
+  color: #241A0C;
+}
+
+.txt-reader.sepia-theme .txt-content::selection {
+  background-color: #D4A574;
+  color: #ffffff;
+}
+
+/* 滚动条样式 */
+.txt-reader-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.txt-reader-content::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+.txt-reader-content::-webkit-scrollbar-thumb {
+  background-color: #C9C0AA;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.txt-reader-content::-webkit-scrollbar-thumb:hover {
+  background-color: #B0A586;
+}
+
+.txt-reader.dark-theme .txt-reader-content::-webkit-scrollbar-thumb {
+  background-color: #4A3F2E;
+}
+
+.txt-reader.dark-theme .txt-reader-content::-webkit-scrollbar-thumb:hover {
+  background-color: #5C4F39;
+}
+
+/* 加载状态动画 */
+.txt-reader-loading .ant-spin {
+  color: #C9A96E;
+}
+
+.txt-reader.dark-theme .txt-reader-loading {
+  background-color: #1B1610;
+  color: #E8DCC6;
+}
+
+.txt-reader.sepia-theme .txt-reader-loading {
+  background-color: #F7F1E1;
+  color: #5C4B37;
+}
+
+/* 工具提示样式 */
+.txt-reader .ant-tooltip {
+  font-size: 12px;
+}
+
+/* 按钮样式优化 */
+.txt-reader-toolbar .ant-btn {
+  border-radius: 8px;
+  font-size: 13px;
+  height: 32px;
+  padding: 0 12px;
+}
+
+.txt-reader-toolbar .ant-btn-icon-only {
+  width: 32px;
+  padding: 0;
+}
+
+/* 输入框样式优化 */
+.txt-reader-toolbar .ant-input-number {
+  border-radius: 8px;
+}
+
+.txt-reader-settings .ant-select,
+.txt-reader-settings .ant-input-number {
+  border-radius: 8px;
+}
+
+/* 滑块样式优化 */
+.txt-reader-settings .ant-slider {
+  margin: 0;
+}
+
+.txt-reader-settings .ant-slider-rail {
+  background-color: #E4D9C3;
+}
+
+.txt-reader-settings .ant-slider-track {
+  background-color: #C9A96E;
+}
+
+.txt-reader-settings .ant-slider-handle {
+  border-color: #C9A96E;
+}
+
+.txt-reader.dark-theme .txt-reader-settings .ant-slider-rail {
+  background-color: #4A3F2E;
+}
+
+/* 颜色选择器样式 */
+.txt-reader-settings .ant-color-picker-trigger {
+  border-radius: 8px;
+  width: 40px;
+  height: 32px;
+}
+
+/* 焦点样式 */
+.txt-reader-content:focus-within {
+  outline: 2px solid #C9A96E;
+  outline-offset: -2px;
+}
+
+.txt-reader.dark-theme .txt-reader-content:focus-within {
+  outline-color: #E9CE8C;
+}
+
+/* 错误状态 */
+.txt-reader-error {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5EEDD;
+  color: #7A6F5E;
+}
+
+.txt-reader-error .error-icon {
+  font-size: 48px;
+  color: #C4553F;
+  margin-bottom: 16px;
+}
+
+.txt-reader-error .error-message {
+  font-size: 16px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.txt-reader-error .error-actions {
+  display: flex;
+  gap: 12px;
+}

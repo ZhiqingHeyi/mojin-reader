@@ -1,0 +1,395 @@
+/* 网页浏览器样式 */
+.web-browser {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+/* 工具栏 */
+.browser-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: rgba(251, 246, 234, 0.92);
+  border-bottom: 1px solid #E4D9C3;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.navigation-buttons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 8px;
+}
+
+.url-form {
+  flex: 1;
+  margin: 0 8px;
+}
+
+.url-input {
+  border-radius: 20px;
+  background-color: #f5f5f5;
+}
+
+.url-input:hover,
+.url-input:focus {
+  background-color: #ffffff;
+}
+
+.favicon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.browser-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+/* 标题栏 */
+.browser-title-bar {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 12px;
+  background-color: rgba(240, 231, 210, 0.7);
+  border-bottom: 1px solid #E4D9C3;
+  font-size: 12px;
+  color: #7A6F5E;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+/* WebView内容 */
+.browser-content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* <webview> 容器：占据剩余空间并居中 */
+.webview-container {
+  flex: 1;
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: width 0.25s ease;
+}
+
+.webview-element {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: flex;
+}
+
+.browser-footer {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  background-color: rgba(240, 231, 210, 0.7);
+  border-top: 1px solid #E4D9C3;
+  font-size: 12px;
+  color: #7A6F5E;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.web-browser.dark-theme .webview-container {
+  background-color: #1B1610;
+}
+
+.web-browser.dark-theme .browser-footer {
+  background-color: #241D14;
+  border-top-color: #3B3123;
+  color: #9A8C77;
+}
+
+
+.webview {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 状态栏 */
+.browser-status-bar {
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  background-color: rgba(240, 231, 210, 0.7);
+  border-top: 1px solid #E4D9C3;
+  font-size: 12px;
+  color: #7A6F5E;
+}
+
+.status-left,
+.status-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 全屏模式 */
+.web-browser.fullscreen .browser-toolbar,
+.web-browser.fullscreen .browser-title-bar,
+.web-browser.fullscreen .browser-status-bar {
+  display: none;
+}
+
+.web-browser.fullscreen .browser-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+/* 移动模式样式 */
+.web-browser.mobile-mode .webview {
+  width: 375px;
+  margin: 0 auto;
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+}
+
+/* 加载状态 */
+.browser-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.loading-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #A07F45 0%, #E9CE8C 100%);
+  animation: loading 2s infinite linear;
+  width: 30%;
+}
+
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .browser-toolbar {
+    padding: 6px 8px;
+  }
+  
+  .navigation-buttons {
+    gap: 2px;
+  }
+  
+  .browser-actions {
+    gap: 2px;
+  }
+  
+  .url-form {
+    margin: 0 4px;
+  }
+}
+
+@media (max-width: 576px) {
+  .browser-actions .ant-btn-icon-only {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .navigation-buttons .ant-btn-icon-only {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* 暗色主题 */
+.web-browser.dark-theme {
+  background-color: #1B1610;
+}
+
+.web-browser.dark-theme .browser-toolbar {
+  background-color: rgba(27, 22, 16, 0.9);
+  border-bottom-color: #3B3123;
+}
+
+.web-browser.dark-theme .url-input {
+  background-color: #2D251A;
+  border-color: #3B3123;
+  color: #E8DCC6;
+}
+
+.web-browser.dark-theme .url-input:hover,
+.web-browser.dark-theme .url-input:focus {
+  background-color: #2D251A;
+}
+
+.web-browser.dark-theme .browser-title-bar {
+  background-color: #241D14;
+  border-bottom-color: #3B3123;
+  color: #9A8C77;
+}
+
+.web-browser.dark-theme .browser-status-bar {
+  background-color: #241D14;
+  border-top-color: #3B3123;
+  color: #9A8C77;
+}
+
+.web-browser.dark-theme.mobile-mode .webview {
+  border-left-color: #3B3123;
+  border-right-color: #3B3123;
+}
+
+/* 按钮样式优化 */
+.browser-toolbar .ant-btn {
+  border-radius: 6px;
+  font-size: 13px;
+  height: 32px;
+  padding: 0 12px;
+}
+
+.browser-toolbar .ant-btn-icon-only {
+  width: 32px;
+  padding: 0;
+}
+
+/* 错误页面 */
+.browser-error {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.browser-error .error-icon {
+  font-size: 64px;
+  color: #ff4d4f;
+  margin-bottom: 16px;
+}
+
+.browser-error .error-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.browser-error .error-message {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+
+.browser-error .error-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* 上下文菜单 */
+.context-menu {
+  position: fixed;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 160px;
+}
+
+.context-menu-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.context-menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background-color: #e8e8e8;
+  margin: 4px 0;
+}
+
+.web-browser.dark-theme .context-menu {
+  background-color: #241D14;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.web-browser.dark-theme .context-menu-item {
+  color: #E8DCC6;
+}
+
+.web-browser.dark-theme .context-menu-item:hover {
+  background-color: #2D251A;
+}
+
+.web-browser.dark-theme .context-menu-divider {
+  background-color: #3B3123;
+}
+
+/* 下拉菜单样式 */
+.ant-dropdown-menu {
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.ant-dropdown-menu-item {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+/* 提示框样式 */
+.ant-tooltip {
+  font-size: 12px;
+}
+
+/* 加载中动画 */
+.ant-spin-dot {
+  font-size: 14px;
+}
+
+/* 打印样式 */
+@media print {
+  .browser-toolbar,
+  .browser-title-bar,
+  .browser-status-bar {
+    display: none !important;
+  }
+  
+  .browser-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

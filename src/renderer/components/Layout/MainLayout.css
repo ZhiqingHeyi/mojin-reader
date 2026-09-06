@@ -1,0 +1,382 @@
+/* 主布局样式 */
+.main-layout {
+  height: 100vh;
+  transition: opacity 0.3s ease;
+}
+
+/* 侧边栏样式 */
+.main-sider {
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  /* z-index 必须高于内容/工具栏，避免阅读器顶部工具栏覆盖在侧边栏之上 */
+  z-index: 100;
+  background: linear-gradient(180deg, #1E1810 0%, #171209 100%) !important;
+  border-right: 1px solid #3B3123;
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.25);
+  transition: width 0.25s ease;
+}
+
+/* Logo样式 */
+.logo {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 12px;
+  background: linear-gradient(180deg, rgba(233, 206, 140, 0.10) 0%, rgba(233, 206, 140, 0.02) 100%);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E9CE8C, transparent);
+}
+
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #E9CE8C 0%, #A07F45 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #241A0C;
+  font-size: 18px;
+  box-shadow: 0 3px 10px rgba(201, 169, 110, 0.35);
+  flex-shrink: 0;
+}
+
+.logo h1 {
+  color: #E9CE8C;
+  font-size: 19px;
+  margin: 0;
+  font-family: 'Kaiti SC', 'KaiTi', 'STKaiti', serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  background: linear-gradient(180deg, #F2E3B6 0%, #C9A96E 60%, #A07F45 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+/* 内容区域样式 */
+.site-layout {
+  margin-left: 0;
+  transition: margin-left 0.3s;
+}
+
+.site-layout-header {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  background-color: rgba(251, 246, 234, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid #E4D9C3;
+}
+
+.site-layout-content {
+  height: calc(100vh - 48px);
+  overflow: hidden;
+  background-color: rgba(245, 238, 221, var(--bg-opacity, 1));
+  transition: background-color 0.25s ease;
+}
+
+/* 内容区：用于独立调节内容透明度 */
+.content-area {
+  height: 100%;
+  position: relative;
+}
+
+/* 折叠按钮样式 */
+.trigger-button {
+  font-size: 18px;
+  line-height: 48px;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: #7A6F5E;
+}
+
+.trigger-button:hover {
+  color: #A07F45;
+}
+
+/* 侧边栏收起时的悬停触发区（小眼睛） */
+.sider-hover-strip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  /* 比侧边栏更高一点，确保始终可点击 */
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgba(30, 24, 16, 0.55) 0%, rgba(23, 18, 9, 0.35) 100%);
+  border-right: 1px solid rgba(201, 169, 110, 0.20);
+  transition: background-color 0.25s ease;
+}
+
+.sider-hover-strip:hover {
+  background: linear-gradient(180deg, rgba(30, 24, 16, 0.85) 0%, rgba(23, 18, 9, 0.65) 100%);
+  border-right: 1px solid rgba(233, 206, 140, 0.5);
+  width: 20px;
+}
+
+.sider-hover-icon {
+  color: #C9A96E;
+  font-size: 14px;
+  opacity: 0.7;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.sider-hover-strip:hover .sider-hover-icon {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* 头部右侧操作区 */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-actions .ant-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 回主页小房子按钮 */
+.home-button {
+  font-size: 16px;
+  color: #7A6F5E;
+}
+
+.home-button:hover {
+  color: #A07F45;
+}
+
+/* 透明度控制面板（下拉弹层） */
+.opacity-panel {
+  min-width: 280px;
+  padding: 4px 0;
+}
+
+.opacity-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 0 4px 8px;
+  border-bottom: 1px solid #E4D9C3;
+}
+
+.opacity-preset-btn {
+  border: 1px solid #E4D9C3;
+  border-radius: 6px;
+  padding: 6px 4px;
+  background: #FBF6EA;
+  color: #6B6152;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.opacity-preset-btn:hover {
+  border-color: #C9A96E;
+  color: #8A6A35;
+  background: #F5EEDC;
+}
+
+.opacity-preset-desc {
+  display: block;
+  margin-top: 2px;
+  color: #A89A83;
+  font-size: 10px;
+}
+
+.opacity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px;
+}
+
+.opacity-label {
+  min-width: 88px;
+  font-size: 12px;
+  color: #6B6152;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.opacity-label .anticon {
+  color: #A07F45;
+}
+
+.opacity-slider-ant {
+  flex: 1;
+  margin: 0;
+}
+
+.opacity-value {
+  min-width: 42px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8A7B64;
+}
+
+.opacity-panel-tip {
+  margin-top: 6px;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: #A89A83;
+  line-height: 1.5;
+}
+
+.opacity-panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed #E4D9C3;
+  margin-top: 6px;
+  padding: 0 8px;
+}
+
+.opacity-reset-btn {
+  padding: 0 4px !important;
+  font-size: 12px;
+  color: #A07F45 !important;
+}
+
+/* 透明度控制样式（旧样式保留兼容，实际使用 Popover 面板） */
+.opacity-controls {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.opacity-button {
+  font-size: 16px;
+}
+
+.opacity-slider {
+  display: flex;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.opacity-slider .ant-btn {
+  border-radius: 6px;
+  font-size: 12px;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 8px;
+}
+
+/* 暗色主题 */
+.dark-theme .site-layout-header {
+  background-color: rgba(27, 22, 16, 0.9);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-bottom-color: #3B3123;
+}
+
+.dark-theme .site-layout-content {
+  background-color: rgba(27, 22, 16, var(--bg-opacity, 1));
+}
+
+.dark-theme .trigger-button {
+  color: #9A8C77;
+}
+
+.dark-theme .trigger-button:hover {
+  color: #E9CE8C;
+}
+
+/* 透明度面板深色适配 */
+.dark-theme .opacity-presets {
+  border-bottom-color: #3B3123;
+}
+
+.dark-theme .opacity-preset-btn {
+  border-color: #3B3123;
+  background: #241D14;
+  color: #9A8C77;
+}
+
+.dark-theme .opacity-preset-btn:hover {
+  border-color: #C9A96E;
+  color: #E9CE8C;
+  background: #2E2618;
+}
+
+.dark-theme .opacity-preset-desc {
+  color: #6E6253;
+}
+
+.dark-theme .opacity-label {
+  color: #9A8C77;
+}
+
+.dark-theme .opacity-value {
+  color: #8A7B64;
+}
+
+.dark-theme .opacity-panel-tip {
+  color: #6E6253;
+}
+
+.dark-theme .opacity-panel-footer {
+  border-top-color: #3B3123;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .site-layout-header {
+    padding: 0 12px;
+  }
+  
+  .opacity-slider {
+    display: none;
+  }
+  
+  .opacity-controls:hover .opacity-slider {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #FBF6EA;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .dark-theme .opacity-controls:hover .opacity-slider {
+    background-color: #241D14;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}

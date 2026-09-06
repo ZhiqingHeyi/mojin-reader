@@ -1,0 +1,361 @@
+/* 网页浏览页面样式 */
+.webview-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #F5EEDD;
+}
+
+/* 浏览器头部 */
+.webview-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: rgba(251, 246, 234, 0.92);
+  border-bottom: 1px solid #E4D9C3;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  gap: 8px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex-wrap: wrap;
+}
+
+.webview-header .ant-segmented {
+  margin-left: auto;
+  background-color: rgba(160, 127, 69, 0.10);
+}
+
+.webview-header .ant-segmented-item-selected {
+  background-color: #C9A96E;
+  color: #241A0C;
+  font-weight: 600;
+}
+
+/* 收藏 / 历史列表面板 */
+.url-list-panel {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 8px 16px;
+  background-color: rgba(251, 246, 234, 0.6);
+  border-bottom: 1px solid #E4D9C3;
+  flex-shrink: 0;
+}
+
+.url-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0 8px;
+  font-size: 13px;
+  color: #A07F45;
+  font-weight: 600;
+}
+
+.url-list-item {
+  cursor: pointer;
+  padding: 6px 8px !important;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.url-list-item:hover {
+  background-color: rgba(201, 169, 110, 0.10);
+}
+
+.url-favicon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #E9CE8C 0%, #A07F45 100%);
+  color: #241A0C;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.url-item-title {
+  font-size: 13px;
+  color: #3A3226;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.url-item-url {
+  font-size: 12px;
+  color: #A89A82;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.back-button {
+  margin-right: 8px;
+}
+
+.navigation-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.url-input {
+  flex: 1;
+  margin: 0 8px;
+}
+
+.view-controls {
+  display: flex;
+  gap: 4px;
+}
+
+/* 浏览器内容区域 */
+.webview-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.3s ease;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 0;
+}
+
+/* 预设网站列表 */
+.preset-sites {
+  padding: 12px 16px;
+  background-color: rgba(251, 246, 234, 0.92);
+  border-bottom: 1px solid #E4D9C3;
+  max-height: 42vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.preset-sites h3 {
+  margin-bottom: 16px;
+  color: #3A3226;
+  font-family: 'Kaiti SC', 'KaiTi', 'STKaiti', serif;
+  letter-spacing: 2px;
+}
+
+.site-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.site-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.site-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 8px;
+}
+
+.site-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #C9A96E;
+}
+
+.site-name {
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+/* 暗色主题适配 */
+.dark-theme .preset-sites {
+  background-color: #241D14;
+  border-bottom-color: #3B3123;
+}
+
+.dark-theme .preset-sites h3 {
+  color: #E9CE8C;
+}
+
+.dark-theme .site-name {
+  color: #D8CCB8;
+}
+
+.dark-theme .url-list-panel {
+  background-color: rgba(36, 29, 20, 0.6);
+  border-bottom-color: #3B3123;
+}
+
+.dark-theme .url-list-header {
+  color: #C9A96E;
+}
+
+.dark-theme .url-list-item:hover {
+  background-color: rgba(201, 169, 110, 0.10);
+}
+
+.dark-theme .url-item-title {
+  color: #E8DCC6;
+}
+
+.dark-theme .url-item-url {
+  color: #9A8C77;
+}
+
+/* 宽屏模式：宽度调整由内部 WebBrowser 自行管理，这里不再强制 */
+
+/* 预设网站分类 */
+.preset-category {
+  margin-bottom: 16px;
+}
+
+.preset-category:last-child {
+  margin-bottom: 0;
+}
+
+.webview-header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #3A3226;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dark-theme .webview-header-title {
+  color: #E8DCC6;
+}
+
+/* 浏览器底部 */
+.webview-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background-color: #FBF6EA;
+  border-top: 1px solid #E4D9C3;
+  font-size: 12px;
+  color: #A89A82;
+}
+
+.page-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 16px;
+}
+
+.current-url {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+}
+
+/* 加载状态 */
+.webview-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #1890ff;
+  animation: loading 1.5s infinite ease-in-out;
+  transform-origin: 0 0;
+}
+
+@keyframes loading {
+  0% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(0.5);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* 错误状态 */
+.webview-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 24px;
+  text-align: center;
+}
+
+.webview-error h3 {
+  font-size: 20px;
+  color: #ff4d4f;
+  margin-bottom: 16px;
+}
+
+.webview-error p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* 暗色主题 */
+.dark-theme .webview-page {
+  background-color: #1B1610;
+}
+
+.dark-theme .webview-header {
+  background-color: rgba(27, 22, 16, 0.9);
+  border-bottom-color: #3B3123;
+}
+
+.dark-theme .webview-container:not(.wide) {
+  border-left-color: #3B3123;
+  border-right-color: #3B3123;
+}
+
+.dark-theme .webview-footer {
+  background-color: #241D14;
+  border-top-color: #3B3123;
+  color: #9A8C77;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .webview-header {
+    padding: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .navigation-controls {
+    order: 1;
+    flex: 1;
+  }
+  
+  .url-input {
+    order: 3;
+    margin: 8px 0 0;
+    width: 100%;
+  }
+  
+  .view-controls {
+    order: 2;
+  }
+  
+  .webview-container:not(.wide) {
+    width: 100%;
+    border: none;
+  }
+  
+  .webview-footer {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .current-url {
+    max-width: 100%;
+  }
+}

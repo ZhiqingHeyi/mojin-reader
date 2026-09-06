@@ -1,0 +1,93 @@
+/* 应用全局样式 */
+.app-container {
+  height: 100vh;
+  overflow: hidden;
+  background-color: #F5EEDD;
+}
+
+.app-container.dark-theme {
+  background-color: #1B1610;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9C0AA;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B0A586;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: #4A3F2E;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #5C4F39;
+}
+
+/* 暗色主题下的Ant Design组件样式覆盖 */
+.dark-theme .ant-card {
+  border-color: #3B3123;
+}
+
+.dark-theme .ant-btn-text {
+  color: #D8CCB8;
+}
+
+.dark-theme .ant-btn-text:hover {
+  color: #E9CE8C;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-theme .ant-tabs-nav::before {
+  border-bottom-color: #3B3123;
+}
+
+.dark-theme .ant-list-item {
+  border-bottom-color: #3B3123;
+}
+
+.dark-theme .ant-dropdown-menu {
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 统一卡片质感 */
+.ant-card {
+  border-radius: 14px;
+}
+
+/* 主按钮质感微调 */
+.ant-btn-primary {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 下拉菜单圆角 */
+.ant-dropdown-menu {
+  border-radius: 10px;
+  padding: 6px;
+}
+
+/* 响应式工具类 */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .show-on-mobile {
+    display: none !important;
+  }
+}

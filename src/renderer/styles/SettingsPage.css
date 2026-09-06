@@ -1,0 +1,60 @@
+/* 设置页面样式 */
+.settings-page {
+  padding: 24px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.settings-card {
+  margin-bottom: 20px;
+  border-radius: 14px;
+}
+
+.settings-tabs {
+  margin-bottom: 24px;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding: 16px 0;
+  border-top: 1px solid #E4D9C3;
+}
+
+/* 关于页面样式 */
+.about-section {
+  text-align: center;
+  padding: 16px;
+}
+
+.app-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 16px;
+}
+
+.feature-list {
+  text-align: left;
+  padding-left: 24px;
+}
+
+.feature-list li {
+  margin-bottom: 8px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 16px;
+  }
+  
+  .settings-card {
+    margin-bottom: 16px;
+  }
+}
+
+/* 暗色主题 */
+.dark-theme .settings-actions {
+  border-top-color: #3B3123;
+}

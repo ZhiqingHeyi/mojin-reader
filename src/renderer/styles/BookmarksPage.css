@@ -1,0 +1,158 @@
+/* 书签页面样式 */
+.bookmarks-page {
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 头部样式 */
+.bookmarks-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bookmarks-header h1 {
+  font-size: 22px;
+  margin: 0;
+  margin-left: 16px;
+  font-family: 'Kaiti SC', 'KaiTi', 'STKaiti', serif;
+  letter-spacing: 2px;
+  background: linear-gradient(180deg, #C9A96E 0%, #8C6D33 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.back-button {
+  margin-right: 8px;
+}
+
+/* 搜索栏样式 */
+.search-bar {
+  margin-bottom: 16px;
+}
+
+/* 标签页样式 */
+.bookmarks-tabs {
+  margin-bottom: 8px;
+}
+
+/* 书签列表容器 */
+.bookmarks-list-container {
+  flex: 1;
+  overflow-y: auto;
+  background-color: rgba(251, 246, 234, 0.7);
+  border: 1px solid #E8DEC8;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.dark-theme .bookmarks-list-container {
+  background-color: rgba(36, 29, 20, 0.6);
+  border-color: #3B3123;
+}
+
+/* 书签项样式 */
+.bookmark-item {
+  border-radius: 12px;
+  margin-bottom: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  border: 1px solid transparent;
+}
+
+.bookmark-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.10);
+  border-color: rgba(201, 169, 110, 0.4);
+}
+
+.bookmark-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.bookmark-icon {
+  margin-right: 12px;
+}
+
+.bookmark-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3A3226;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dark-theme .bookmark-title {
+  color: #E8DCC6;
+}
+
+.bookmark-excerpt {
+  font-style: italic;
+  color: #7A6F5E;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background-color: rgba(201, 169, 110, 0.08);
+  border-left: 3px solid #C9A96E;
+  border-radius: 0 8px 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bookmark-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #A89A82;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.bookmark-notes {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: rgba(201, 169, 110, 0.10);
+  border-radius: 8px;
+}
+
+.notes-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #A07F45;
+}
+
+.notes-content {
+  color: #7A6F5E;
+  white-space: pre-wrap;
+}
+
+.bookmark-tags {
+  margin-top: 12px;
+}
+
+/* 空状态样式 */
+.ant-empty {
+  margin: 40px 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .bookmarks-page {
+    padding: 16px;
+  }
+  
+  .bookmark-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
