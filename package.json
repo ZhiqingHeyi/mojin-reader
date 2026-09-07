@@ -54,8 +54,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
-    "react-router-dom": "^6.14.2",
-    "sqlite3": "^5.1.6"
+    "react-router-dom": "^6.14.2"
   },
   "devDependencies": {
     "@types/minimatch": "^5.1.2",
@@ -91,6 +90,7 @@
     "appId": "com.mojinreader.app",
     "productName": "摸金阅读",
     "copyright": "Copyright © 2026 摸金阅读团队",
+    "artifactName": "MojinReader-${version}-${os}-${arch}.${ext}",
     "directories": {
       "output": "release"
     },

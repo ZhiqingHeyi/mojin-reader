@@ -1,0 +1,48 @@
+name: Release Build & Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Release (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            target: --mac dmg zip
+          - os: windows-latest
+            target: --win nsis zip
+          - os: ubuntu-latest
+            target: --linux deb rpm AppImage tar.gz
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build main and renderer
+        run: npm run build
+
+      - name: Build and Publish Electron Package
+        uses: electron-userland/electron-builder-action@v15
+        with:
+          args: ${{ matrix.target }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release: true
