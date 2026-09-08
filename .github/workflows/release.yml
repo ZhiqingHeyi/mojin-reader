@@ -18,11 +18,11 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            target: --mac dmg zip
+            build_cmd: npx electron-builder --mac dmg zip --publish always
           - os: windows-latest
-            target: --win nsis zip
+            build_cmd: npx electron-builder --win nsis zip --publish always
           - os: ubuntu-latest
-            target: --linux deb rpm AppImage tar.gz
+            build_cmd: npx electron-builder --linux deb rpm AppImage tar.gz --publish always
 
     steps:
       - name: Checkout repository
@@ -37,12 +37,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Linux build dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rpm libarchive-tools
+
       - name: Build main and renderer
         run: npm run build
 
       - name: Build and Publish Electron Package
-        uses: electron-userland/electron-builder-action@v15
-        with:
-          args: ${{ matrix.target }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          release: true
+        run: ${{ matrix.build_cmd }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
